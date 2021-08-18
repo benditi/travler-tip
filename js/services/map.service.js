@@ -32,9 +32,8 @@ function addMarker(loc) {
     return marker;
 }
 
-function panTo(lat, lng) {
-    var laLatLng = new google.maps.LatLng(lat, lng);
-    gMap.panTo(laLatLng);
+function panTo(geocoder, map,address) {
+    mapService.geocodeAddress(geocoder, map,address);
 }
 
 
@@ -61,13 +60,14 @@ function getMap() {
 }
 
 
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.querySelector('.search-input').value;
+function geocodeAddress(geocoder, resultsMap,address) {
+
     geocoder
         .geocode({ address: address })
         .then(({ results }) => {
             // TODO LOCAL SERVICE SAVE
             console.log('results[0].geometry.location',results[0].geometry.location);
+
             resultsMap.setCenter(results[0].geometry.location);
             new google.maps.Marker({
                 map: resultsMap,
