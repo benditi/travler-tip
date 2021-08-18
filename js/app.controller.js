@@ -58,16 +58,16 @@ function onGetUserPos() {
 
 function onPanTo() {
     const geocoder = new google.maps.Geocoder();
-    debugger;
     map = getMap();
+    console.log('map', map)
     geocodeAddress(geocoder, map)
-    // geocoder.geocode({ 'address': address }, function(results, status) {
-    //     if (status == 'OK') {
-    //         console.log(results[0].geometry);
-    //     } else {
-    //         alert('Geocode was not successful for the following reason: ' + status);
-    //     }
-    // });
+        // geocoder.geocode({ 'address': address }, function(results, status) {
+        //     if (status == 'OK') {
+        //         console.log(results[0].geometry);
+        //     } else {
+        //         alert('Geocode was not successful for the following reason: ' + status);
+        //     }
+        // });
 
     //what was befor
     console.log('Panning the Map');
@@ -153,6 +153,7 @@ function onGoLoc(ev) {
     console.log('locId', locId);
     goLoc(locId)
 }
+
 function update(ev) {
     const locId = ev.target.parentElement.nodeName.data.id
 }
