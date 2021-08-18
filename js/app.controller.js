@@ -25,9 +25,8 @@ function getPosition() {
 }
 
 function onAddMarker(latlang) {
-    console.log(latlang);
     console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    mapService.addMarker({ lat: latlang.lat(), lng: latlang.lng() });
 }
 
 function onGetLocs() {
