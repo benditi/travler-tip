@@ -66,3 +66,33 @@ function onSubmit(ev) {
     console.log('val', val);
 
 }
+
+
+location.map(location => {
+    return `<div data-id="${location.id}">
+    <h2>${location.name} </h2>
+    <button class="delete-btn">Delete</button>
+    <button  class="go-btn">Go</button>
+    <button  class="update-btn">Update</button>
+    </div>`
+})
+document.querySelectorAll('.delte-btn').forEach(btn => {
+    btn.addEventListener('click', onDeleteLoc)
+})
+document.querySelectorAll('.go-btn').forEach(btn => {
+    btn.addEventListener('click', onGoLoc)
+})
+document.querySelectorAll('.go-btn').forEach(btn => {
+    btn.addEventListener('click', onGoLoc)
+})
+
+
+
+function onGoLoc(ev){
+    const locId = ev.target.parentElement.nodeName.data.id
+}
+
+function onDeleteLoc(ev) {
+    const locId = ev.target.parentElement.nodeName.data.id
+    deleteLoc(locId)
+}
