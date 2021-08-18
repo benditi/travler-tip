@@ -30,11 +30,7 @@ function getPosition() {
     })
 }
 
-<<<<<<< HEAD
 function onAddMarker(latlang) {
-=======
-function onAddMarker() {
->>>>>>> 75fc51757e317690fb4ed637729240aef1e295cb
     console.log('Adding a marker');
     mapService.addMarker({ lat: latlang.lat(), lng: latlang.lng() });
 }
@@ -58,9 +54,39 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
+
 function onPanTo() {
+    const geocoder = new google.maps.Geocoder();
+    debugger;
+    map = getMap();
+    geocodeAddress(geocoder, map)
+        // geocoder.geocode({ 'address': address }, function(results, status) {
+        //     if (status == 'OK') {
+        //         console.log(results[0].geometry);
+        //     } else {
+        //         alert('Geocode was not successful for the following reason: ' + status);
+        //     }
+        // });
+
+    //what was befor
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+    const address = document.querySelector('.search-input').value;
+    geocoder
+        .geocode({ address: address })
+        .then(({ results }) => {
+            resultsMap.setCenter(results[0].geometry.location);
+            new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location,
+            });
+        })
+        .catch((e) =>
+            alert("Geocode was not successful for the following reason: " + e)
+        );
 }
 
 
@@ -72,14 +98,14 @@ function onSubmit(ev) {
 }
 
 
-location.map(location => {
-    return `<div data-id="${location.id}">
-    <h2>${location.name} </h2>
-    <button class="delete-btn">Delete</button>
-    <button  class="go-btn">Go</button>
-    <button  class="update-btn">Update</button>
-    </div>`
-})
+// location.map(location => {
+//     return `<div data-id="${location.id}">
+//     <h2>${location.name} </h2>
+//     <button class="delete-btn">Delete</button>
+//     <button  class="go-btn">Go</button>
+//     <button  class="update-btn">Update</button>
+//     </div>`
+// })
 document.querySelectorAll('.delte-btn').forEach(btn => {
     btn.addEventListener('click', onDeleteLoc)
 })
@@ -92,7 +118,7 @@ document.querySelectorAll('.go-btn').forEach(btn => {
 
 
 
-function onGoLoc(ev){
+function onGoLoc(ev) {
     const locId = ev.target.parentElement.nodeName.data.id
 }
 
