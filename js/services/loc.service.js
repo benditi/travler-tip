@@ -2,9 +2,11 @@ export const locService = {
     getLocs,
     setLocation,
     updateLocation,
+    findLocByName,
+    findLocById
 }
 
-
+var gIds = 2;
 
 const locs = [
     {
@@ -28,9 +30,9 @@ const locs = [
 ]
 
 
-function setLocation(id, name, lat, lng, weather = '') {
+function setLocation(name, lat, lng, weather = '') {
     locs.push({
-        id,
+        id: ++gIds,
         name,
         lat,
         lng,
@@ -51,11 +53,16 @@ function updateLocation(id, name, lat, lng, weather = '') {
 
 
 }
+function findLocByName(name) {
+    return locs.find(loc => {
+        return loc.name === name;
+    });
+}
 
 
 function findLocById(id) {
     return locs.find(loc => {
-        return loc[id] === id;
+        return loc.id === id;
     });
 }
 

@@ -56,38 +56,15 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo() {
+function onPanTo(ev) {
+    ev.preventDefault();
     const geocoder = new google.maps.Geocoder();
-    map = getMap();
-    console.log('map', map)
-    geocodeAddress(geocoder, map)
-        // geocoder.geocode({ 'address': address }, function(results, status) {
-        //     if (status == 'OK') {
-        //         console.log(results[0].geometry);
-        //     } else {
-        //         alert('Geocode was not successful for the following reason: ' + status);
-        //     }
-        // });
+    let map = mapService.getMap();
+    console.log('map', map);
+    mapService.geocodeAddress(geocoder, map);
 
-    //what was befor
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
-}
-
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.querySelector('.search-input').value;
-    geocoder
-        .geocode({ address: address })
-        .then(({ results }) => {
-            resultsMap.setCenter(results[0].geometry.location);
-            new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location,
-            });
-        })
-        .catch((e) =>
-            alert("Geocode was not successful for the following reason: " + e)
-        );
 }
 
 

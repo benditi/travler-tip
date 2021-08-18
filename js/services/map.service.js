@@ -2,6 +2,7 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
+    geocodeAddress,
     getMap
 }
 
@@ -57,4 +58,23 @@ function _connectGoogleApi() {
 
 function getMap() {
     return gMap;
+}
+
+
+function geocodeAddress(geocoder, resultsMap) {
+    const address = document.querySelector('.search-input').value;
+    geocoder
+        .geocode({ address: address })
+        .then(({ results }) => {
+            // TODO LOCAL SERVICE SAVE
+            console.log('results[0].geometry.location',results[0].geometry.location);
+            resultsMap.setCenter(results[0].geometry.location);
+            new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location,
+            });
+        })
+        .catch((e) =>
+            alert("Geocode was not successful for the following reason: " + e)
+        );
 }
