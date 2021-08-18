@@ -153,7 +153,7 @@ function onGoLoc(ev) {
     console.log('locId', locId);
     goLoc(locId)
 }
-function onGoLoc(ev) {
+function update(ev) {
     const locId = ev.target.parentElement.nodeName.data.id
 }
 
