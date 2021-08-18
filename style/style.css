@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: rgb(228, 65, 65);
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.location{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.location-container{
+    display: flex;
+}
+.location-container>*{
+    flex-basis: 50%;
+}
+
+
+.main-weath-loc-container{
+    display: flex;
+    flex-direction: column;
+}
+.main-weath-loc-container>*{
+    flex-basis: 50%;
+}
+.footer-container{
+    text-align: center;
+}

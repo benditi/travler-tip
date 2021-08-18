@@ -6,6 +6,7 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSubmit = onSubmit;
 
 function onInit() {
     mapService.initMap()
@@ -50,4 +51,12 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
+}
+
+
+function onSubmit(ev) {
+    ev.preventDefault();
+    const val = document.querySelector('.search-input').value;
+    console.log('val',val);
+
 }
