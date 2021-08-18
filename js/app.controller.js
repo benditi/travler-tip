@@ -1,17 +1,23 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
+
 window.onload = onInit;
-window.onAddMarker = onAddMarker;
+// window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onSubmit = onSubmit;
 
 function onInit() {
+
     mapService.initMap()
-        .then(() => {
+        .then((map) => {
             console.log('Map is ready');
+            map.addListener('click', (ev) => {
+                onAddMarker(ev.latLng)
+            });
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -24,8 +30,7 @@ function getPosition() {
     })
 }
 
-function onAddMarker(latlang) {
-    console.log(latlang);
+function onAddMarker() {
     console.log('Adding a marker');
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
 }
@@ -49,7 +54,6 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);

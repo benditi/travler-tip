@@ -4,6 +4,9 @@ export const locService = {
     updateLocation,
 }
 
+var gCurrPos;
+
+
 const locs = [
     {
         id: 1,
@@ -19,10 +22,6 @@ const locs = [
 
 
 function setLocation(id, name, lat, lng, weather = '') {
-    if (findLocById(id) === -1) {
-        console.log('Existing Location');
-        return;
-    }
     locs.push({
         id,
         name,
@@ -36,7 +35,7 @@ function setLocation(id, name, lat, lng, weather = '') {
 }
 
 function updateLocation(id, name, lat, lng, weather = '') {
-    let loc = findLocById(id);
+    const loc = findLocById(id);
     loc.name = name;
     loc.lat = lat;
     loc.lng = lng;
@@ -46,6 +45,25 @@ function updateLocation(id, name, lat, lng, weather = '') {
 
 }
 
+// location.map(location => {
+//     return `<div data-id="${location.id}">
+//     <h2>${location.name} </h2>
+//     <button class="delete-btn">Delete</button>
+//     <button  class="go-btn">Go</button>
+//     <button  class="update-btn">Update</button>
+//     </div>`
+// })
+// document.querySelectorAll('.delte-btn').forEach(btn => {
+//     btn.addEventListener('click', onDeleteLoc)
+// })
+// document.querySelectorAll('.go-btn').forEach(btn => {
+//     btn.addEventListener('click', onGoLoc)
+// })
+
+// function onDeleteLoc(ev) {
+//     const locId = ev.target.parentElement.nodeName.data.id
+//     deleteLoc(locId)
+// }
 
 function findLocById(id) {
     return locs.find(loc => {
