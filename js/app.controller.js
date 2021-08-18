@@ -20,6 +20,7 @@ function onInit() {
             });
         })
         .catch(() => console.log('Error: cannot init map'));
+    renderTable();
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -30,11 +31,7 @@ function getPosition() {
     })
 }
 
-<<<<<<< HEAD
-function onAddMarker(latlang) {
-=======
 function onAddMarker() {
->>>>>>> 75fc51757e317690fb4ed637729240aef1e295cb
     console.log('Adding a marker');
     mapService.addMarker({ lat: latlang.lat(), lng: latlang.lng() });
 }
@@ -72,31 +69,63 @@ function onSubmit(ev) {
 }
 
 
-location.map(location => {
-    return `<div data-id="${location.id}">
-    <h2>${location.name} </h2>
-    <button class="delete-btn">Delete</button>
-    <button  class="go-btn">Go</button>
-    <button  class="update-btn">Update</button>
-    </div>`
-})
-document.querySelectorAll('.delte-btn').forEach(btn => {
-    btn.addEventListener('click', onDeleteLoc)
-})
-document.querySelectorAll('.go-btn').forEach(btn => {
-    btn.addEventListener('click', onGoLoc)
-})
-document.querySelectorAll('.go-btn').forEach(btn => {
-    btn.addEventListener('click', onGoLoc)
-})
 
 
 
-function onGoLoc(ev){
-    const locId = ev.target.parentElement.nodeName.data.id
+
+
+
+
+
+function renderTable() {
+    let strHTML = `<th>ID</th>
+                <th>Name</th>
+                <th>Lat</th>
+                <th>Lng</th>
+                <th>CreateAt</th>
+                <th>UpdateAt</th>`
+    locService.getLocs().then(locs => {
+        locs.forEach(location => {
+            console.log('location', location);
+            strHTML +=
+                `<tr>
+              <td>${location.id}</td>
+              <td>${location.name}</td>
+              <td>${location.lat}</td>
+              <td>${location.lng}</td>
+              <td>${location.createdAt}</td>
+              <td>${location.updateAt}</td>
+              <td><button data-id='${location.id}' class="delete-btn">Delete</button></td>
+              <td><button data-id='${location.id}' class="go-btn">Go</button></td>
+              <td><button data-id='${location.id}' class="update-btn">Update</button></td>
+          </tr>`
+        });
+        document.querySelector('.location-table').innerHTML = strHTML;
+
+
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', onDeleteLoc)
+        })
+        document.querySelectorAll('.go-btn').forEach(btn => {
+            btn.addEventListener('click', onGoLoc)
+        })
+        document.querySelectorAll('.update-btn').forEach(btn => {
+            btn.addEventListener('click', onGoLoc)
+        })
+    });
+
+
+}
+
+
+function onGoLoc(ev) {
+    const locId = ev.target.dataset.id
+    console.log('locId', locId);
+    goLoc(locId)
 }
 
 function onDeleteLoc(ev) {
-    const locId = ev.target.parentElement.nodeName.data.id
+    const locId = ev.target.dataset.id
+    console.log('locId', locId);
     deleteLoc(locId)
 }

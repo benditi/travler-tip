@@ -4,7 +4,6 @@ export const locService = {
     updateLocation,
 }
 
-var gCurrPos;
 
 
 const locs = [
@@ -17,7 +16,15 @@ const locs = [
         createdAt: Date.now(),
         updateAt: Date.now()
     },
-    { id: 2, name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
+    {
+        id: 2,
+        name: 'Greatplace',
+        lat: 32.047104,
+        lng: 34.832384,
+        weather: '',
+        createdAt: Date.now(),
+        updateAt: Date.now()
+    },
 ]
 
 
@@ -54,9 +61,7 @@ function findLocById(id) {
 
 function getLocs() {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(locs);
-        }, 2000)
+        resolve(locs);
     });
 }
 

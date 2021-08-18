@@ -10,22 +10,39 @@
     display: flex;
 }
 
-/* MAIN BODY */
+/* BODY */
 body{
     background-color: rgb(228, 65, 65);
 }
+body>*{
+    border: 2px solid black;
+}
+.main-location-container>*{
+    border: 2px solid black;
+}
 
+
+/* HEADER */
 header{
     display: flex;
     justify-content: space-between;
 }
 
+
+
+.input-container-head{
+    display: flex;
+    align-items: center;
+}
+
+/* LOCATION DISPLAY AND COPY */
 .location{
     display: flex;
     justify-content: space-between;
     
 }
 
+/* MAIN */
 .location-container{
     display: flex;
 }
@@ -34,12 +51,22 @@ header{
 }
 
 
+/* WEATHER AND TABLE CONTAINER */
 .main-weath-loc-container{
     display: flex;
     flex-direction: column;
 }
 .main-weath-loc-container>*{
     flex-basis: 50%;
+}
+
+/* TABLE SETTING */
+
+.location-table{
+    border: 2px solid black;
+}
+.location-table td{
+    border: 2px solid black;
 }
 .footer-container{
     text-align: center;

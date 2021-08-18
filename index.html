@@ -12,7 +12,7 @@
 <body>
     <header class="head-travel-container">
         <h1>TravelTip</h1>
-        <div>
+        <div class="input-container-head">
             <form onsubmit="onPanTo(event)">
                 <input class="search-input" type="search" placeholder="Enter Location">
                 <button type="submit" class="btn-pan">Go</button>
@@ -29,7 +29,11 @@
         <div class="location-container">
             <div class="main-weath-loc-container">
                 <div class="weather-container">Weather</div>
-                <div class="location-table">Location Table</div>
+                <div class="location-table-container">
+                    <table class="location-table">
+                        <thead>table</thead>
+                    </table>
+                </div>
             </div>
             <div id="map" style="width: 100%; height: 400px;"></div>
         </div>
