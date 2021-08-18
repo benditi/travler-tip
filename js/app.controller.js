@@ -58,10 +58,11 @@ function onGetUserPos() {
 
 function onPanTo(ev) {
     ev.preventDefault();
+    const address = document.querySelector('.search-input').value;
     const geocoder = new google.maps.Geocoder();
     let map = mapService.getMap();
     console.log('map', map);
-    mapService.geocodeAddress(geocoder, map);
+    mapService.panTo(geocoder, map, address)
 
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
@@ -74,15 +75,6 @@ function onSubmit(ev) {
     console.log('val', val);
 
 }
-
-
-
-
-
-
-
-
-
 
 function renderTable() {
     let strHTML = `<th>ID</th>
@@ -123,7 +115,6 @@ function renderTable() {
 
 
 }
-
 
 function onGoLoc(ev) {
     const locId = ev.target.dataset.id
