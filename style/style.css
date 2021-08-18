@@ -3,6 +3,14 @@
 }
 
 
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+/* MAIN BODY */
 body{
     background-color: rgb(228, 65, 65);
 }
