@@ -13,22 +13,19 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
+                center: { lat, lng },
+                zoom: 15
+            })
             console.log('Map!', gMap);
-            gMap.addListener("click", (e) => {
-                onAddMarker(e.latLng)
-            });
+            return gMap
         })
-
 }
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
-        title: 'Hello World!'
+        title: getLocTitle()
     });
     return marker;
 }
@@ -39,6 +36,9 @@ function panTo(lat, lng) {
 }
 
 
+function getLocTitle(){
+    return prompt('please Enter title');
+}
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
