@@ -24,7 +24,8 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
+function onAddMarker(latlang) {
+    console.log(latlang);
     console.log('Adding a marker');
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
 }
@@ -48,6 +49,7 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
+
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
@@ -57,6 +59,6 @@ function onPanTo() {
 function onSubmit(ev) {
     ev.preventDefault();
     const val = document.querySelector('.search-input').value;
-    console.log('val',val);
+    console.log('val', val);
 
 }

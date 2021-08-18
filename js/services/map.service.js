@@ -17,7 +17,11 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     zoom: 15
                 })
             console.log('Map!', gMap);
+            gMap.addListener("click", (e) => {
+                onAddMarker(e.latLng)
+            });
         })
+
 }
 
 function addMarker(loc) {
@@ -38,7 +42,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AAIzaSyCRqCkP28OFmsTzJGUZMRK45JeeC-3FRAQ'; //My API Key
+    const API_KEY = 'AIzaSyCRqCkP28OFmsTzJGUZMRK45JeeC-3FRAQ'; //My API Key
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
