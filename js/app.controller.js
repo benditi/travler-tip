@@ -62,10 +62,12 @@ function onPanTo(ev) {
     const geocoder = new google.maps.Geocoder();
     let map = mapService.getMap();
     console.log('map', map);
-    mapService.panTo(geocoder, map, address)
+    mapService.panTo(geocoder, map, address).then(res => {
+        let lat = res[0].geometry.location.lat();
+        let lng = res[0].geometry.location.lng();
+        locService.setLocation(address, lat, lng);
+    })
 
-    console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
 }
 
 
