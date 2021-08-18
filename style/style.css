@@ -10,12 +10,18 @@
     display: flex;
 }
 
+.btn{
+    margin: 30px;
+}
+
 /* BODY */
 body{
-    background-color: rgb(228, 65, 65);
+    background-color: rgb(216, 87, 48);
+    padding:5px;
+    font-family: cursive;
 }
 body>*{
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 .main-location-container>*{
     border: 2px solid black;
@@ -25,21 +31,36 @@ body>*{
 /* HEADER */
 header{
     display: flex;
+
     justify-content: space-between;
 }
 
+
+h1{
+    font-family: monospace;
+    font-size: 2rem;
+}
 
 
 .input-container-head{
     display: flex;
     align-items: center;
+    /* justify-content: center; */
+
 }
 
 /* LOCATION DISPLAY AND COPY */
-.location{
+.location-copy{
     display: flex;
     justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: 700;
+
     
+}
+.span{
+    font-weight: 700;
+    font-size: 3rem;
 }
 
 /* MAIN */

@@ -3,12 +3,15 @@ export const locService = {
     setLocation,
     updateLocation,
     findLocByName,
-    findLocById
+    findLocById,
+    goLoc,
+    onUpdate,
+    deleteLoc
 }
 
 var gIds = 2;
 
-const locs = [
+var locs = [
     {
         id: 1,
         name: 'Greatplace',
@@ -40,10 +43,11 @@ function setLocation(name, lat, lng, weather = '') {
         createdAt: Date.now(),
         updateAt: Date.now()
     });
+    console.log('locs', locs);
     console.log('set location successful');
 }
 
-function updateLocation(id, name, lat, lng, weather = '') {
+function updateLocation(id, name, weather = '') {
     const loc = findLocById(id);
     loc.name = name;
     loc.lat = lat;
@@ -73,3 +77,22 @@ function getLocs() {
 }
 
 
+
+
+
+function goLoc(locId) {
+
+}
+function onUpdate(locId) {
+    const name = prompt('enter new name')
+    updateLocation(locId, name)
+}
+function deleteLoc(locId) {
+    console.log('locId',locId);
+    locs = locs.filter(loc => {
+        console.log('loc',loc);
+        console.log('locId',locId);
+        return loc.id != locId;
+    });
+    console.log('locs',locs);
+}

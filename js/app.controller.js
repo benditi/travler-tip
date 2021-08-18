@@ -62,12 +62,15 @@ function onPanTo(ev) {
     const geocoder = new google.maps.Geocoder();
     let map = mapService.getMap();
     console.log('map', map);
-    mapService.panTo(geocoder, map, address).then(res => {
+    var prm = mapService.panTo(geocoder, map, address)
+
+    prm.then(res => {
+        console.log('res', res);
         let lat = res[0].geometry.location.lat();
         let lng = res[0].geometry.location.lng();
         locService.setLocation(address, lat, lng);
-    })
-
+        renderTable();
+    });
 }
 
 
@@ -102,8 +105,6 @@ function renderTable() {
           </tr>`
         });
         document.querySelector('.location-table').innerHTML = strHTML;
-
-
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', onDeleteLoc)
         })
@@ -111,7 +112,7 @@ function renderTable() {
             btn.addEventListener('click', onGoLoc)
         })
         document.querySelectorAll('.update-btn').forEach(btn => {
-            btn.addEventListener('click', onGoLoc)
+            btn.addEventListener('click', onUpdate)
         })
     });
 
@@ -121,15 +122,18 @@ function renderTable() {
 function onGoLoc(ev) {
     const locId = ev.target.dataset.id
     console.log('locId', locId);
-    goLoc(locId)
+    locService.goLoc(locId)
 }
 
-function update(ev) {
+function onUpdate(ev) {
     const locId = ev.target.parentElement.nodeName.data.id
+    locService.onUpdate(locId)
 }
 
 function onDeleteLoc(ev) {
-    const locId = ev.target.dataset.id
+    var locId = ev.target.dataset.id
+    // locId=parseInt(locId)
     console.log('locId', locId);
-    deleteLoc(locId)
+    locService.deleteLoc(locId)
+    renderTable()
 }

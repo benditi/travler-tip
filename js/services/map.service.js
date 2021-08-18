@@ -15,9 +15,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
+                center: { lat, lng },
+                zoom: 15
+            })
             console.log('Map!', gMap);
             return gMap
         })
@@ -33,7 +33,7 @@ function addMarker(loc) {
 }
 
 function panTo(geocoder, map, address) {
-    mapService.geocodeAddress(geocoder, map, address);
+    return geocodeAddress(geocoder, map, address);
 }
 
 
@@ -59,10 +59,8 @@ function getMap() {
     return gMap;
 }
 
-
 function geocodeAddress(geocoder, resultsMap, address) {
-
-    return geocoder
+    var prm = geocoder
         .geocode({ address: address })
         .then(({ results }) => {
             // TODO LOCAL SERVICE SAVE
@@ -72,10 +70,15 @@ function geocodeAddress(geocoder, resultsMap, address) {
                 map: resultsMap,
                 position: results[0].geometry.location,
             });
-            return results;
-
+            console.log('results[0].geometry.location', results[0].geometry.location);
+            return Promise.resolve(results);
         })
         .catch((e) =>
             alert("Geocode was not successful for the following reason: " + e)
         );
+    prm.then(results => {
+
+        console.log('results[0].geometry.location', results[0].geometry.location);
+    })
+    return prm;
 }
